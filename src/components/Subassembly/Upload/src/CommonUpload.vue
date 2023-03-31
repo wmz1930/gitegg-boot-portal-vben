@@ -137,6 +137,7 @@
           emit('update:value', JSON.stringify(imgUrlList.value));
           emit('change', JSON.stringify(imgUrlList.value));
         } else {
+          imgUrlList.value = [];
           emit('update:value', '');
           emit('change', '');
         }

@@ -161,7 +161,7 @@
           mobile: value,
         };
         const result = await checkUserExist(params);
-        if (!result) {
+        if (!result && value !== '') {
           return Promise.reject(new Error('该手机号已注册'));
         }
         return Promise.resolve();

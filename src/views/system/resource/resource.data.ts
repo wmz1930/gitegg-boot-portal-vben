@@ -170,7 +170,7 @@ export const formSchema: FormSchema[] = [
             return new Promise((resolve, reject) => {
               const keyData = {
                 id: model.id,
-                checkField: 'resourceKey',
+                checkField: 'resource_key',
                 checkValue: value,
               };
               checkResourceExist(keyData)

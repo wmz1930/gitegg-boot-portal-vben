@@ -10,7 +10,7 @@ export function getRoleList(query) {
 export function getRoleListAll(data) {
   return defHttp.get({
     url: '/system/role/all',
-    data,
+    params: data,
   });
 }
 

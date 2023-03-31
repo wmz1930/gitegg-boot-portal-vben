@@ -37,6 +37,7 @@
             <icon icon="ant-design:down-outlined" />
           </a-button>
         </Dropdown>
+        <a-alert message="请将正则表达式中的\需要替换为\\保存" type="warning" />
       </template>
       <template #toolbar>
         <Upload
@@ -105,7 +106,7 @@
 </template>
 <script lang="ts">
   import { defineComponent, ref, reactive } from 'vue';
-  import { Upload } from 'ant-design-vue';
+  import { Upload, Alert } from 'ant-design-vue';
   import { merge } from 'lodash-es';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import {
@@ -138,6 +139,7 @@
       Dropdown,
       Icon,
       Upload,
+      AAlert: Alert,
     },
     setup() {
       const checkedKeys = ref(Array<string | number>());

@@ -59,7 +59,11 @@
         isFirstLoaded.value = true;
       }
 
-      return { loading, refTree, treeData, handleSelect, handleCheck };
+      function reLoading() {
+        fetch();
+      }
+
+      return { loading, refTree, treeData, handleSelect, handleCheck, reLoading };
     },
   });
 </script>
