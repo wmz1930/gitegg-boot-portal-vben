@@ -68,7 +68,7 @@
         保存
       </a-button>
 
-      <a-button v-if="current == steps.length - 1" type="primary" @click="editFieldList">
+      <a-button v-if="current == steps.length - 1" type="primary" @click="saveAndClose">
         配置完成
       </a-button>
 
@@ -92,6 +92,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useLoading } from '/@/components/Loading';
   import { useGo } from '/@/hooks/web/usePage';
+  import { useTabs } from '/@/hooks/web/useTabs';
 
   import { useModal } from '/@/components/Modal';
   import AddDataModal from './modal/AddDataModal.vue';
@@ -116,6 +117,7 @@
     setup() {
       const go = useGo();
       const route = useRoute();
+      const { closeCurrent } = useTabs();
       // 获取config id
       const configId = ref(route.params?.id);
       const config = ref<any>({});
@@ -239,6 +241,11 @@
         });
       }
 
+      async function saveAndClose() {
+        await editFieldList();
+        closeCurrent();
+      }
+
       const tableForm = ref();
       const tableFormValid = ref();
 
@@ -287,6 +294,7 @@
         fieldList,
         fieldInit,
         editFieldList,
+        saveAndClose,
         next,
         prev,
         backToList,
