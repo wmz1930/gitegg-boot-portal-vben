@@ -88,7 +88,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
 
   import { Dropdown } from '/@/components/Dropdown';
-  import { Icon } from '/@/components/Icon';
+  import Icon from '@/components/Icon/Icon.vue';
 
   // 这里演示打开新的tab页时需要
   // import { useGo } from '/@/hooks/web/usePage';

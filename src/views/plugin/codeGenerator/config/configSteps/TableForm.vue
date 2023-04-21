@@ -145,7 +145,7 @@
 <script lang="ts">
   import { defineComponent, ref, reactive, onMounted } from 'vue';
   import { Tabs, Input, Select, Tag, Checkbox } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import Icon from '@/components/Icon/Icon.vue';
   import HeaderCell from '/@/components/Table/src/components/HeaderCell.vue';
   import { BasicTable } from '/@/components/Table';
   import { columns } from './table-form/table.form.data';
