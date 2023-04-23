@@ -265,12 +265,26 @@
       };
 
       const handlePreview = async (file) => {
-        if (!file.url && !file.preview) {
-          file.preview = (await getBase64(file.file)) as string;
+        if (props.uploadType === 'image') {
+          if (!file.url && !file.preview) {
+            file.preview = (await getBase64(file.file)) as string;
+          }
+          previewImage.value = file.url || file.preview;
+          previewVisible.value = true;
+          previewTitle.value = file.name || file.url.substring(file.url.lastIndexOf('/') + 1);
+        } else {
+          var xml = new XMLHttpRequest();
+          xml.open('GET', file.url, true);
+          xml.responseType = 'blob';
+          xml.onload = function () {
+            var url = window.URL.createObjectURL(xml.response);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = file.fileName;
+            a.click();
+          };
+          xml.send();
         }
-        previewImage.value = file.url || file.preview;
-        previewVisible.value = true;
-        previewTitle.value = file.name || file.url.substring(file.url.lastIndexOf('/') + 1);
       };
 
       return {
