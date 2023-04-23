@@ -28,12 +28,12 @@
 <script lang="ts">
   import { PlusOutlined, UploadOutlined } from '@ant-design/icons-vue';
   import { defineComponent, ref, unref, onBeforeMount, watch, toRefs } from 'vue';
-  import { message } from 'ant-design-vue';
+  import { message, Upload, Modal } from 'ant-design-vue';
   import { basicProps } from '/@/components/Upload/src/props';
   import { checkImgType, getBase64WithFile } from '/@/components/Upload/src/helper';
   import { buildUUID } from '/@/utils/uuid';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { Upload, Modal } from 'ant-design-vue';
+
   import type { UploadChangeParam } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useUploadType } from '/@/components/Upload/src/useUpload';
@@ -250,7 +250,9 @@
             fileList.value.push({
               uid: value.uid,
               name: value.fileName,
+              fileName: value.fileName,
               status: 'done',
+              encodedFileName: value.encodedFileName,
               url: fileUrl,
             });
           });
@@ -292,8 +294,8 @@
 <style>
   /* you can make up upload button and sample style by using stylesheets */
   .ant-upload-select-picture-card i {
-    font-size: 32px;
     color: #999;
+    font-size: 32px;
   }
 
   .ant-upload-select-picture-card .ant-upload-text {
