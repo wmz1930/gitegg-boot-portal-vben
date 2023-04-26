@@ -1,7 +1,7 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
     <!--资源权限树-->
-    <ResourceTree helpMessage="再次点击选中的节点，可取消选中" @select="handleSelect" class="m-4" />
+    <ResourceTree helpMessage="再次点击选中的节点，可取消选中" @select="handleSelect" />
     <!--数据表格-->
     <BasicTable
       @register="registerTable"

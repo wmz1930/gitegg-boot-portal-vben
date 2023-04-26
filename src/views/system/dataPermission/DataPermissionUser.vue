@@ -1,11 +1,7 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
     <!--组织结构树-->
-    <OrganizationTree
-      helpMessage="再次点击选中的节点，可取消选中"
-      @select="handleSelect"
-      class="m-4"
-    />
+    <OrganizationTree helpMessage="再次点击选中的节点，可取消选中" @select="handleSelect" />
     <!--数据表格-->
     <BasicTable
       @register="registerTable"
