@@ -50,7 +50,7 @@
 
   // import FormItem from '/@/components/Form/src/components/FormItem.vue';
 
-  import { Icon } from '/@/components/Icon';
+  import Icon from '@/components/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
   export default defineComponent({
     name: 'VFormItem',

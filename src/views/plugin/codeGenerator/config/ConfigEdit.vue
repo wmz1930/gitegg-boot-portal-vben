@@ -88,7 +88,7 @@
   import TableList from './configSteps/TableList.vue';
   import { PageWrapper } from '/@/components/Page';
   import { Steps } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import Icon from '@/components/Icon/Icon.vue';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useLoading } from '/@/components/Loading';
   import { useGo } from '/@/hooks/web/usePage';

@@ -110,7 +110,7 @@
   import { useGo } from '/@/hooks/web/usePage';
 
   import { Dropdown } from '/@/components/Dropdown';
-  import { Icon } from '/@/components/Icon';
+  import Icon from '@/components/Icon/Icon.vue';
 
   export default defineComponent({
     name: 'ConfigManagement',
