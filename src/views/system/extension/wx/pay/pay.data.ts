@@ -259,7 +259,7 @@ export const formSchema: FormSchema[] = [
   // },
   {
     field: 'notifyUrl',
-    label: '微信支付异步回掉地址',
+    label: '微信支付异步回调地址',
     component: 'Input',
     rules: [{ min: 1, max: 500, message: '长度在 1 到 500 个字符', trigger: 'blur' }],
     colProps: { span: 24 },

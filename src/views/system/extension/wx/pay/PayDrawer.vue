@@ -26,7 +26,7 @@
       const rowId = ref('');
 
       const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
-        labelWidth: 90,
+        labelWidth: 140,
         baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
