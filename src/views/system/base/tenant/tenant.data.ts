@@ -145,7 +145,6 @@ export const tenantForm: FormSchema[] = [
     show: false,
     component: 'Input',
   },
-
   {
     label: '租户名称',
     field: 'tenantName',
