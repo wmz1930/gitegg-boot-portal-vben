@@ -33,7 +33,7 @@ import { StrengthMeter } from '/@/components/StrengthMeter';
 import { IconPicker } from '/@/components/Icon';
 import { CountdownInput } from '/@/components/CountDown';
 
-import { CommonUpload } from '/@/components/Subassembly/Upload/index';
+import { CommonUpload, CopperUpload } from '/@/components/Subassembly/Upload/index';
 
 const componentMap = new Map<ComponentType, Component>();
 
@@ -75,6 +75,7 @@ componentMap.set('Upload', BasicUpload);
 componentMap.set('Divider', Divider);
 
 componentMap.set('CommonUpload', CommonUpload);
+componentMap.set('CopperUpload', CopperUpload);
 
 export function add(compName: ComponentType, component: Component) {
   componentMap.set(compName, component);

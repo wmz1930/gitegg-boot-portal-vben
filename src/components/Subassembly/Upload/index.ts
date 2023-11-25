@@ -1,5 +1,6 @@
 import CommonUpload from './src/CommonUpload.vue';
+import CopperUpload from './src/CopperUpload.vue';
 
-export { CommonUpload };
+export { CommonUpload, CopperUpload };
 
 export default CommonUpload;

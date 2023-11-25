@@ -115,4 +115,5 @@ export type ComponentType =
   | 'Rate'
   | 'Divider'
   | 'ApiTransfer'
-  | 'CommonUpload';
+  | 'CommonUpload'
+  | 'CopperUpload';

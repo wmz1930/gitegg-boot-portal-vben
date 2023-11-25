@@ -2,7 +2,7 @@
   <BasicModal
     v-bind="$attrs"
     @register="register"
-    :title="t('component.cropper.modalTitle')"
+    title="图片裁切"
     width="800px"
     :canFullscreen="false"
     @ok="handleOk"
@@ -14,10 +14,9 @@
           <CropperImage
             v-if="src"
             :src="src"
-            height="300px"
-            :circled="circled"
             @cropend="handleCropend"
             @ready="handleReady"
+            height="300px"
           />
         </div>
 
@@ -98,14 +97,14 @@
         <div :class="`${prefixCls}-preview`">
           <img :src="previewSource" v-if="previewSource" :alt="t('component.cropper.preview')" />
         </div>
-        <template v-if="previewSource">
+        <!-- <template v-if="previewSource">
           <div :class="`${prefixCls}-group`">
-            <Avatar :src="previewSource" size="large" />
-            <Avatar :src="previewSource" :size="48" />
-            <Avatar :src="previewSource" :size="64" />
-            <Avatar :src="previewSource" :size="80" />
+            <Image :src="previewSource" size="large" />
+            <Image :src="previewSource" :size="48" />
+            <Image :src="previewSource" :size="64" />
+            <Image :src="previewSource" :size="80" />
           </div>
-        </template>
+        </template> -->
       </div>
     </div>
   </BasicModal>
@@ -113,9 +112,9 @@
 <script lang="ts">
   import type { CropendResult, Cropper } from './typing';
 
-  import { defineComponent, ref, PropType } from 'vue';
-  import CropperImage from './Cropper.vue';
-  import { Space, Upload, Avatar, Tooltip } from 'ant-design-vue';
+  import { defineComponent, ref, PropType, watch, watchEffect } from 'vue';
+  import CropperImage from './CropperImg.vue';
+  import { Space, Upload, Image, Tooltip } from 'ant-design-vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { dataURLtoBlob } from '/@/utils/file/base64Conver';
@@ -125,7 +124,6 @@
   type apiFunParams = { file: Blob; name: string; filename: string; data: any };
 
   const props = {
-    circled: { type: Boolean, default: true },
     uploadApi: {
       type: Function as PropType<(params: apiFunParams) => Promise<any>>,
     },
@@ -137,12 +135,12 @@
 
   export default defineComponent({
     name: 'CropperModal',
-    components: { BasicModal, Space, CropperImage, Upload, Avatar, Tooltip },
+    components: { BasicModal, Space, CropperImage, Upload, Image, Tooltip },
     props,
     emits: ['uploadSuccess', 'register'],
-    setup(props, { emit }) {
+    setup(props, { emit, attrs }) {
       let filename = '';
-      const src = ref(props.src || '');
+      const src = ref(attrs.src || '');
       const previewSource = ref('');
       const cropper = ref<Cropper>();
       let scaleX = 1;
@@ -151,6 +149,24 @@
       const { prefixCls } = useDesign('cropper-am');
       const [register, { closeModal, setModalProps }] = useModalInner();
       const { t } = useI18n();
+
+      watchEffect(() => {
+        src.value = attrs.src;
+      });
+
+      watch(
+        () => attrs.src,
+        (newVal, oldVal) => {
+          if (newVal && newVal !== oldVal) {
+            src.value = newVal;
+          } else {
+            previewSource.value = '';
+          }
+        },
+        {
+          deep: true,
+        },
+      );
 
       // Block upload
       function handleBeforeUpload(file: File) {
@@ -196,7 +212,11 @@
               filename,
               data: uploadParams,
             });
-            emit('uploadSuccess', { source: previewSource.value, data: result.data });
+            emit('uploadSuccess', {
+              source: previewSource.value,
+              data: result.data,
+              fileName: filename,
+            });
             closeModal();
           } finally {
             setModalProps({ confirmLoading: false });
@@ -268,12 +288,11 @@
     }
 
     &-preview {
-      width: 220px;
-      height: 220px;
+      // width: 220px;
+      // height: 220px;
       margin: 0 auto;
       overflow: hidden;
       border: 1px solid @border-color-base;
-      border-radius: 50%;
 
       img {
         width: 100%;

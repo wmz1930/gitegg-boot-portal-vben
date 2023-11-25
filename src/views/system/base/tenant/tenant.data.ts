@@ -1,5 +1,5 @@
-import { BasicColumn } from '/@/components/Table';
-import { FormProps, FormSchema } from '/@/components/Table';
+import { BasicColumn, FormProps, FormSchema } from '/@/components/Table';
+
 import { getDictCache } from '/@/utils/gitegg/dictUtils';
 import { updateTenantStatus } from '/@/api/system/base/tenant';
 import { renderStatusSwitch } from '/@/utils/gitegg/formUtils';
